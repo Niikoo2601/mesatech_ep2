@@ -10,3 +10,7 @@ build/
 node_modules/
 *.class
 *.log
+
+# Configuración del IDE
+.idea/
+.vscode/
