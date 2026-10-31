@@ -1,0 +1,12 @@
+# Secretos y configuración real: NO se suben
+.env
+*.env
+!.env.example
+**/src/env
+
+# Compilación
+target/
+build/
+node_modules/
+*.class
+*.log

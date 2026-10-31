@@ -1,0 +1,48 @@
+# RabbitMQ de MesaTech Cloud - EC2 C (Ubuntu 24.04 LTS)
+# Uso:
+#   cp .env.example .env && nano .env      (definir credenciales reales, NO subir .env)
+#   docker compose config --quiet          (valida el archivo)
+#   docker compose pull                    (descarga la imagen)
+#   docker compose up -d                   (arranca el broker)
+#   docker compose ps                      (estado y salud)
+services:
+  rabbitmq:
+    # Imagen oficial con etiqueta explícita que incluye la interfaz de administración
+    image: rabbitmq:4.2-management
+    container_name: mesatech-rabbitmq
+
+    # Hostname ESTABLE: RabbitMQ guarda sus datos bajo el nombre de nodo rabbit@<hostname>.
+    # Si el hostname cambiara al recrear el contenedor, el nodo no encontraría sus datos
+    # (virtual host, usuarios, cola y mensajes) aunque el volumen se conserve.
+    hostname: mesatech-rabbitmq
+
+    # Vuelve a levantarse si se cae o si se reinicia Docker / la EC2,
+    # salvo que se haya detenido manualmente.
+    restart: unless-stopped
+
+    ports:
+      - "5672:5672"     # AMQP: Catálogo y Solicitudes (solo por red privada, ver security group)
+      - "15672:15672"   # Interfaz de administración HTTP (solo IP administrativa /32)
+
+    # Credenciales del ADMINISTRADOR, leídas desde .env (fuera del repositorio).
+    # Solo se aplican la primera vez que arranca con el volumen vacío.
+    # Al definirlas, el usuario guest NO se crea.
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER:?Defina RABBITMQ_ADMIN_USER en .env}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASSWORD:?Defina RABBITMQ_ADMIN_PASSWORD en .env}
+
+    # Volumen persistente: definiciones y mensajes persistentes sobreviven a
+    # "docker compose down" + "up" y a recrear el contenedor (no usar "down -v").
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  rabbitmq_data:
+    name: mesatech_rabbitmq_data

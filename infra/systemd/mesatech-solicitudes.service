@@ -1,0 +1,22 @@
+# MesaTech Cloud - Solicitudes (consumidor) - EC2 B
+# Instalar:
+#   sudo cp mesatech-solicitudes.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now mesatech-solicitudes
+# Logs:  journalctl -u mesatech-solicitudes -f
+[Unit]
+Description=MesaTech Solicitudes (consumidor) - EC2 B
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/mesatech/solicitudes
+# Variables reales (contraseñas, endpoints) fuera del repositorio, permisos 600
+EnvironmentFile=/etc/mesatech/solicitudes.env
+ExecStart=/usr/bin/java -Xms128m -Xmx384m -jar /opt/mesatech/solicitudes/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

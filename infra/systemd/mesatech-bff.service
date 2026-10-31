@@ -1,0 +1,22 @@
+# MesaTech Cloud - BFF con validación JWT - EC2 A
+# Instalar:
+#   sudo cp mesatech-bff.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now mesatech-bff
+# Logs:  journalctl -u mesatech-bff -f
+[Unit]
+Description=MesaTech BFF con validación JWT - EC2 A
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/mesatech/bff
+# Variables reales (contraseñas, endpoints) fuera del repositorio, permisos 600
+EnvironmentFile=/etc/mesatech/bff.env
+ExecStart=/usr/bin/java -Xms128m -Xmx384m -jar /opt/mesatech/bff/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

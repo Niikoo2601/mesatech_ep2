@@ -1,0 +1,22 @@
+# MesaTech Cloud - Catálogo (publicador) - EC2 A
+# Instalar:
+#   sudo cp mesatech-catalogo.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now mesatech-catalogo
+# Logs:  journalctl -u mesatech-catalogo -f
+[Unit]
+Description=MesaTech Catálogo (publicador) - EC2 A
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/mesatech/catalogo
+# Variables reales (contraseñas, endpoints) fuera del repositorio, permisos 600
+EnvironmentFile=/etc/mesatech/catalogo.env
+ExecStart=/usr/bin/java -Xms128m -Xmx384m -jar /opt/mesatech/catalogo/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
