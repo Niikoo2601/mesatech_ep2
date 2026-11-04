@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 
 import java.util.ArrayList;
 import java.util.Collection;
-// Fin agregados post roles
+
 
 import java.util.List;
 
@@ -136,23 +136,20 @@ public class SecurityConfig {
         return conversor;
     }
 
-    /*
-     * Configuración CORS
-     */
+    //Configuración CORS
+     
     @Bean
     CorsConfigurationSource corsConfigurationSource(
             @Value("${mesatech.cors.origenes:http://localhost:3000}") List<String> origenesPermitidos) {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        /*
-         * React
-         */
+        //React
+         
         config.setAllowedOrigins(origenesPermitidos);
 
-        /*
-         * Métodos HTTP
-         */
+        //Métodos HTTP
+         
         config.setAllowedMethods(
 
                 List.of(
@@ -165,9 +162,8 @@ public class SecurityConfig {
 
         );
 
-        /*
-         * Headers permitidos
-         */
+        //Headers permitidos
+         
         config.setAllowedHeaders(
 
                 List.of(

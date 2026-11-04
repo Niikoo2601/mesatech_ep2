@@ -11,12 +11,6 @@ import org.springframework.web.client.RestClientResponseException;
 
 import java.util.Map;
 
-/**
- * Propaga al frontend el código y el cuerpo de error de los microservicios
- * (por ejemplo 503 cuando Catálogo no logra publicar el evento, 422 cuando la
- * categoría aún no está en Solicitudes o 409 por una transición de estado inválida),
- * en lugar de transformarlos en un 500 genérico.
- */
 @RestControllerAdvice
 public class ManejadorErroresMicroservicios {
 
