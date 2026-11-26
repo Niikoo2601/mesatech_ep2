@@ -1,6 +1,6 @@
 -- =====================================================================
 -- RDS SOLICITUDES (instancia exclusiva: mesatech-solicitudes-db)
--- Ejecutar conectado con el usuario maestro (admin) DESDE LA EC2 B:
+-- Ejecutar conectado con el usuario maestro (admin) DESDE LA EC2 Solicitudes:
 --   mysql -h <endpoint-rds-solicitudes> -u admin -p < 02_solicitudes.sql
 -- Reemplazar la contraseña de ejemplo antes de ejecutar (no subir la real).
 -- =====================================================================

@@ -1,10 +1,10 @@
-# MesaTech Cloud - Solicitudes (consumidor) - EC2 B
+# MesaTech Cloud - Solicitudes (consumidor) - EC2 Solicitudes
 # Instalar:
 #   sudo cp mesatech-solicitudes.service /etc/systemd/system/
 #   sudo systemctl daemon-reload && sudo systemctl enable --now mesatech-solicitudes
 # Logs:  journalctl -u mesatech-solicitudes -f
 [Unit]
-Description=MesaTech Solicitudes (consumidor) - EC2 B
+Description=MesaTech Solicitudes (consumidor) - EC2 Solicitudes
 After=network-online.target
 Wants=network-online.target
 

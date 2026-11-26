@@ -1,4 +1,4 @@
-# RabbitMQ de MesaTech Cloud - EC2 C (Ubuntu 24.04 LTS)
+# RabbitMQ de MesaTech Cloud - EC2 RabbitMQ (Ubuntu 24.04 LTS)
 # Uso:
 #   cp .env.example .env && nano .env      (definir credenciales reales, NO subir .env)
 #   docker compose config --quiet          (valida el archivo)

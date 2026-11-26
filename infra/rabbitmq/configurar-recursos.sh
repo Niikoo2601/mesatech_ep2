@@ -3,7 +3,7 @@
 # Crea (o vuelve a aplicar) los recursos de mensajería de MesaTech
 # usando la API HTTP de administración de RabbitMQ (puerto 15672).
 #
-# Ejecutar EN LA EC2 C, en la misma carpeta que compose.yaml y .env,
+# Ejecutar EN LA EC2 RabbitMQ, en la misma carpeta que compose.yaml y .env,
 # después de "docker compose up -d" y de que el contenedor esté healthy:
 #
 #     chmod +x configurar-recursos.sh

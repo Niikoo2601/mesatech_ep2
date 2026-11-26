@@ -1,6 +1,6 @@
 -- =====================================================================
 -- RDS CATÁLOGO (instancia exclusiva: mesatech-catalogo-db)
--- Ejecutar conectado con el usuario maestro (admin) DESDE LA EC2 A:
+-- Ejecutar conectado con el usuario maestro (admin) DESDE LA EC2 Catalogo:
 --   mysql -h <endpoint-rds-catalogo> -u admin -p < 01_catalogo.sql
 -- Reemplazar la contraseña de ejemplo antes de ejecutar (no subir la real).
 -- =====================================================================
