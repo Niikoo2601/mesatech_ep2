@@ -157,7 +157,7 @@ function App() {
         };
 
         const respuestaUsuario = await Axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/v2/usuario`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}/v2/usuario`,
           configuracion
         );
 
@@ -172,7 +172,7 @@ function App() {
           : "/v2/solicitudes/mias";
 
         const respuestaSolicitudes = await Axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}${rutaSolicitudes}`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}${rutaSolicitudes}`,
           configuracion
         );
 
@@ -180,7 +180,7 @@ function App() {
         setSolicitudes(respuestaSolicitudes.data);
         try {
           const respuestaCatalogo = await Axios.get(
-            `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo`,
+            `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo`,
             configuracion
           );
 
@@ -195,7 +195,7 @@ function App() {
 
         try {
           const respuestaLocales = await Axios.get(
-            `${process.env.REACT_APP_API_BASE_URL}/v2/categorias-locales`,
+            `${process.env.REACT_APP_API_BASE_URL || ""}/v2/categorias-locales`,
             configuracion
           );
 
@@ -211,7 +211,7 @@ function App() {
 
         try {
           const respuestaPrioridades = await Axios.get(
-            `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/prioridades`,
+            `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/prioridades`,
             configuracion
           );
 
@@ -302,7 +302,7 @@ function App() {
       });
 
       const respuesta = await Axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/solicitudes`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/solicitudes`,
         solicitudRevisada,
         {
           headers: {
@@ -349,7 +349,7 @@ function App() {
       });
 
       const respuesta = await Axios.patch(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/solicitudes/${id}/estado`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/solicitudes/${id}/estado`,
         {
           estado: nuevoEstado
         },
@@ -411,7 +411,7 @@ function App() {
       });
 
       const respuesta = await Axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/categorias-locales`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/categorias-locales`,
         {
           headers: {
             Authorization: `Bearer ${respuestaToken.accessToken}`
@@ -435,7 +435,7 @@ function App() {
     try {
       const configuracion = await obtenerConfiguracionAutorizada();
       const respuesta = await Axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo`,
         configuracion
       );
       setCategorias(respuesta.data);
@@ -495,7 +495,7 @@ function App() {
 
       if (categoriaEditandoId === null) {
         const respuesta = await Axios.post(
-          `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo`,
           peticion,
           configuracion
         );
@@ -511,7 +511,7 @@ function App() {
         );
       } else {
         const respuesta = await Axios.put(
-          `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/${categoriaEditandoId}`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/${categoriaEditandoId}`,
           peticion,
           configuracion
         );
@@ -586,7 +586,7 @@ function App() {
         await obtenerConfiguracionAutorizada();
 
       await Axios.delete(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/${categoria.id}`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/${categoria.id}`,
         configuracion
       );
 
@@ -644,7 +644,7 @@ function App() {
 
       if (prioridadEditandoId === null) {
         const respuesta = await Axios.post(
-          `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/prioridades`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/prioridades`,
           peticion,
           configuracion
         );
@@ -659,7 +659,7 @@ function App() {
         );
       } else {
         const respuesta = await Axios.put(
-          `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/prioridades/${prioridadEditandoId}`,
+          `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/prioridades/${prioridadEditandoId}`,
           peticion,
           configuracion
         );
@@ -729,7 +729,7 @@ function App() {
         await obtenerConfiguracionAutorizada();
 
       await Axios.delete(
-        `${process.env.REACT_APP_API_BASE_URL}/v2/catalogo/prioridades/${prioridadCatalogo.id}`,
+        `${process.env.REACT_APP_API_BASE_URL || ""}/v2/catalogo/prioridades/${prioridadCatalogo.id}`,
         configuracion
       );
 
